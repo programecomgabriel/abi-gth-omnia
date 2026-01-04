@@ -6,6 +6,7 @@ using Ambev.DeveloperEvaluation.Common.Validation;
 using Ambev.DeveloperEvaluation.IoC;
 using Ambev.DeveloperEvaluation.ORM;
 using Ambev.DeveloperEvaluation.WebApi.Middleware;
+using Ambev.DeveloperEvaluation.WebApi.Migrator;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
@@ -51,6 +52,8 @@ public class Program
             });
 
             builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+
+            builder.Services.AddHostedService<MigrationHostedService>();
 
             var app = builder.Build();
             app.UseMiddleware<ValidationExceptionMiddleware>();
