@@ -1,3 +1,4 @@
+using Ambev.DeveloperEvaluation.WebApi.Contracts;
 using MediatR;
 
 namespace Ambev.DeveloperEvaluation.Application.Users.DeleteUser;

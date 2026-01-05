@@ -2,8 +2,14 @@ using FluentValidation;
 
 namespace Ambev.DeveloperEvaluation.Application.Auth.AuthenticateUser
 {
+    /// <summary>
+    /// Validator for AuthenticateUserCommand
+    /// </summary>
     public class AuthenticateUserValidator : AbstractValidator<AuthenticateUserCommand>
     {
+        /// <summary>
+        /// Initializes validation rules for AuthenticateUserCommand
+        /// </summary>
         public AuthenticateUserValidator()
         {
             RuleFor(x => x.Email)

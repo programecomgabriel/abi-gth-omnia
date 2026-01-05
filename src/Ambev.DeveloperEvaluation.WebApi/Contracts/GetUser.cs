@@ -1,14 +1,25 @@
 using Ambev.DeveloperEvaluation.Domain.Enums;
 
-namespace Ambev.DeveloperEvaluation.WebApi.Features.Users.CreateUser;
+namespace Ambev.DeveloperEvaluation.WebApi.Contracts;
 
 /// <summary>
-/// API response model for CreateUser operation
+/// Request model for getting a user by ID
 /// </summary>
-public class CreateUserResponse
+public class GetUserRequest
 {
     /// <summary>
-    /// The unique identifier of the created user
+    /// The unique identifier of the user to retrieve
+    /// </summary>
+    public Guid Id { get; set; }
+}
+
+/// <summary>
+/// API response model for GetUser operation
+/// </summary>
+public class GetUserResponse
+{
+    /// <summary>
+    /// The unique identifier of the user
     /// </summary>
     public Guid Id { get; set; }
 

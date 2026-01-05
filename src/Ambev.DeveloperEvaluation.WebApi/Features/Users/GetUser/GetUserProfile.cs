@@ -1,18 +1,18 @@
 using AutoMapper;
+using Ambev.DeveloperEvaluation.Domain.Entities;
 
-namespace Ambev.DeveloperEvaluation.WebApi.Features.Users.GetUser;
+namespace Ambev.DeveloperEvaluation.Application.Users.GetUser;
 
 /// <summary>
-/// Profile for mapping GetUser feature requests to commands
+/// Profile for mapping between User entity and GetUserResponse
 /// </summary>
 public class GetUserProfile : Profile
 {
     /// <summary>
-    /// Initializes the mappings for GetUser feature
+    /// Initializes the mappings for GetUser operation
     /// </summary>
     public GetUserProfile()
     {
-        CreateMap<Guid, Application.Users.GetUser.GetUserCommand>()
-            .ConstructUsing(id => new Application.Users.GetUser.GetUserCommand(id));
+        CreateMap<User, GetUserResult>();
     }
 }

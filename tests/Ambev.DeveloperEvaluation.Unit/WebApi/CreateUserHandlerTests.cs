@@ -3,8 +3,11 @@ using Ambev.DeveloperEvaluation.Common.Security;
 using Ambev.DeveloperEvaluation.Domain.Entities;
 using Ambev.DeveloperEvaluation.Domain.Repositories;
 using Ambev.DeveloperEvaluation.Unit.Domain;
+using Ambev.DeveloperEvaluation.Unit.WebApi.TestFixture;
 using AutoMapper;
 using FluentAssertions;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 using NSubstitute;
 using Xunit;
 
@@ -19,6 +22,7 @@ public class CreateUserHandlerTests
     private readonly IMapper _mapper;
     private readonly IPasswordHasher _passwordHasher;
     private readonly CreateUserHandler _handler;
+    private readonly IMediator _mediator;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="CreateUserHandlerTests"/> class.
@@ -30,6 +34,9 @@ public class CreateUserHandlerTests
         _mapper = Substitute.For<IMapper>();
         _passwordHasher = Substitute.For<IPasswordHasher>();
         _handler = new CreateUserHandler(_userRepository, _mapper, _passwordHasher);
+
+        var provider = TestServiceProvider.Build();
+        _mediator = provider.GetRequiredService<IMediator>();
     }
 
     /// <summary>
@@ -83,7 +90,7 @@ public class CreateUserHandlerTests
         var command = new CreateUserCommand(); // Empty command will fail validation
 
         // When
-        var act = () => _handler.Handle(command, CancellationToken.None);
+        var act = () => _mediator.Send(command);
 
         // Then
         await act.Should().ThrowAsync<FluentValidation.ValidationException>();
