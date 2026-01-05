@@ -1,4 +1,4 @@
-namespace Ambev.DeveloperEvaluation.WebApi.Contracts;
+namespace Ambev.DeveloperEvaluation.WebApi.Contracts.Users;
 
 /// <summary>
 /// Request model for deleting a user

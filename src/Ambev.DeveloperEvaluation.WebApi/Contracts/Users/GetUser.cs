@@ -1,6 +1,6 @@
 using Ambev.DeveloperEvaluation.Domain.Users;
 
-namespace Ambev.DeveloperEvaluation.WebApi.Contracts;
+namespace Ambev.DeveloperEvaluation.WebApi.Contracts.Users;
 
 /// <summary>
 /// Request model for getting a user by ID

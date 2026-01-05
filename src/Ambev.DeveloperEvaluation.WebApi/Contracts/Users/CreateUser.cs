@@ -1,6 +1,6 @@
 ﻿using Ambev.DeveloperEvaluation.Domain.Users;
 
-namespace Ambev.DeveloperEvaluation.WebApi.Contracts;
+namespace Ambev.DeveloperEvaluation.WebApi.Contracts.Users;
 
 /// <summary>
 /// Represents a request to create a new user in the system.

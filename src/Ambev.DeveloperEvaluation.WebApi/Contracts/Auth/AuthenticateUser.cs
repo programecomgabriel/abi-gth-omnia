@@ -1,4 +1,4 @@
-﻿namespace Ambev.DeveloperEvaluation.WebApi.Contracts;
+﻿namespace Ambev.DeveloperEvaluation.WebApi.Contracts.Auth;
 
 /// <summary>
 /// Represents the authentication request model for user login.

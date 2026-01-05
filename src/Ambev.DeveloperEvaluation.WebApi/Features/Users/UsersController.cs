@@ -2,7 +2,7 @@
 using Ambev.DeveloperEvaluation.Application.Users.DeleteUser;
 using Ambev.DeveloperEvaluation.Application.Users.GetUser;
 using Ambev.DeveloperEvaluation.WebApi.Common;
-using Ambev.DeveloperEvaluation.WebApi.Contracts;
+using Ambev.DeveloperEvaluation.WebApi.Contracts.Users;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
