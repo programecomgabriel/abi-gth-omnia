@@ -1,4 +1,4 @@
-using Ambev.DeveloperEvaluation.Domain.Enums;
+using Ambev.DeveloperEvaluation.Domain.Users;
 
 namespace Ambev.DeveloperEvaluation.WebApi.Contracts;
 

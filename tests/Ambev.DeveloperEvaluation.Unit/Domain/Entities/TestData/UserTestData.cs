@@ -1,5 +1,4 @@
-using Ambev.DeveloperEvaluation.Domain.Entities;
-using Ambev.DeveloperEvaluation.Domain.Enums;
+using Ambev.DeveloperEvaluation.Domain.Users;
 using Bogus;
 
 namespace Ambev.DeveloperEvaluation.Unit.Domain.Entities.TestData;

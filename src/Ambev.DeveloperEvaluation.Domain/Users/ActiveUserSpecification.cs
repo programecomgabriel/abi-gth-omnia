@@ -1,7 +1,6 @@
-using Ambev.DeveloperEvaluation.Domain.Entities;
-using Ambev.DeveloperEvaluation.Domain.Enums;
+using Ambev.DeveloperEvaluation.Domain.Specifications;
 
-namespace Ambev.DeveloperEvaluation.Domain.Specifications;
+namespace Ambev.DeveloperEvaluation.Domain.Users;
 
 public class ActiveUserSpecification : ISpecification<User>
 {

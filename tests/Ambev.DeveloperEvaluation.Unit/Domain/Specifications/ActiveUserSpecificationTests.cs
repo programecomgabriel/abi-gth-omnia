@@ -1,5 +1,4 @@
-using Ambev.DeveloperEvaluation.Domain.Enums;
-using Ambev.DeveloperEvaluation.Domain.Specifications;
+using Ambev.DeveloperEvaluation.Domain.Users;
 using Ambev.DeveloperEvaluation.Unit.Domain.Specifications.TestData;
 using FluentAssertions;
 using Xunit;

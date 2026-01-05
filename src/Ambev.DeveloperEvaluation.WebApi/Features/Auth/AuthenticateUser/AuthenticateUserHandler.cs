@@ -1,6 +1,6 @@
 using Ambev.DeveloperEvaluation.Common.Security;
-using Ambev.DeveloperEvaluation.Domain.Repositories;
 using Ambev.DeveloperEvaluation.Domain.Specifications;
+using Ambev.DeveloperEvaluation.Domain.Users;
 using MediatR;
 
 namespace Ambev.DeveloperEvaluation.Application.Auth.AuthenticateUser

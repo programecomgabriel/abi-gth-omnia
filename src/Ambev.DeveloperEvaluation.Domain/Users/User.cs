@@ -1,11 +1,8 @@
 using Ambev.DeveloperEvaluation.Common.Security;
 using Ambev.DeveloperEvaluation.Common.Validation;
-using Ambev.DeveloperEvaluation.Domain.Common;
-using Ambev.DeveloperEvaluation.Domain.Enums;
-using Ambev.DeveloperEvaluation.Domain.Validation;
+using Ambev.DeveloperEvaluation.Domain.Common.Entities;
 
-namespace Ambev.DeveloperEvaluation.Domain.Entities;
-
+namespace Ambev.DeveloperEvaluation.Domain.Users;
 
 /// <summary>
 /// Represents a user in the system with authentication and profile information.
@@ -29,7 +26,7 @@ public class User : BaseEntity, IUser
     /// Gets the user's phone number.
     /// Must be a valid phone number format following the pattern (XX) XXXXX-XXXX.
     /// </summary>
-    public string Phone { get; set; } = string.Empty ;
+    public string Phone { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets the hashed password for authentication.
@@ -42,7 +39,7 @@ public class User : BaseEntity, IUser
     /// Gets the user's role in the system.
     /// Determines the user's permissions and access levels.
     /// </summary>
-    public UserRole Role { get;     set; }
+    public UserRole Role { get; set; }
 
     /// <summary>
     /// Gets the user's current status.
@@ -143,4 +140,20 @@ public class User : BaseEntity, IUser
         Status = UserStatus.Suspended;
         UpdatedAt = DateTime.UtcNow;
     }
+}
+
+public enum UserRole
+{
+    None = 0,
+    Customer,
+    Manager,
+    Admin,
+}
+
+public enum UserStatus
+{
+    Unknown = 0,
+    Active,
+    Inactive,
+    Suspended
 }

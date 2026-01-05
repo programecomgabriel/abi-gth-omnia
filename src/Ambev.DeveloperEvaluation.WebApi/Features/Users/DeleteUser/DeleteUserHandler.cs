@@ -1,4 +1,4 @@
-using Ambev.DeveloperEvaluation.Domain.Repositories;
+using Ambev.DeveloperEvaluation.Domain.Users;
 using Ambev.DeveloperEvaluation.WebApi.Contracts;
 using MediatR;
 

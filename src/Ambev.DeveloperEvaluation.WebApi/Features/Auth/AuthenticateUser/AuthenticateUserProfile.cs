@@ -1,4 +1,4 @@
-using Ambev.DeveloperEvaluation.Domain.Entities;
+using Ambev.DeveloperEvaluation.Domain.Users;
 using Ambev.DeveloperEvaluation.WebApi.Contracts;
 using AutoMapper;
 
