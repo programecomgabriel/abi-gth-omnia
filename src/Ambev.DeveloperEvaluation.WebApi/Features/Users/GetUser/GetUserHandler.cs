@@ -1,8 +1,7 @@
 using Ambev.DeveloperEvaluation.Domain.Users;
-using AutoMapper;
 using MediatR;
 
-namespace Ambev.DeveloperEvaluation.Application.Users.GetUser;
+namespace Ambev.DeveloperEvaluation.WebApi.Features.Users.GetUser;
 
 /// <summary>
 /// Handler for processing GetUserCommand requests
@@ -10,7 +9,6 @@ namespace Ambev.DeveloperEvaluation.Application.Users.GetUser;
 public class GetUserHandler : IRequestHandler<GetUserCommand, GetUserResult>
 {
     private readonly IUserRepository _userRepository;
-    private readonly IMapper _mapper;
 
     /// <summary>
     /// Initializes a new instance of GetUserHandler
@@ -18,12 +16,9 @@ public class GetUserHandler : IRequestHandler<GetUserCommand, GetUserResult>
     /// <param name="userRepository">The user repository</param>
     /// <param name="mapper">The AutoMapper instance</param>
     /// <param name="validator">The validator for GetUserCommand</param>
-    public GetUserHandler(
-        IUserRepository userRepository,
-        IMapper mapper)
+    public GetUserHandler(IUserRepository userRepository)
     {
         _userRepository = userRepository;
-        _mapper = mapper;
     }
 
     /// <summary>
@@ -34,10 +29,16 @@ public class GetUserHandler : IRequestHandler<GetUserCommand, GetUserResult>
     /// <returns>The user details if found</returns>
     public async Task<GetUserResult> Handle(GetUserCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userRepository.GetByIdAsync(request.Id, cancellationToken);
-        if (user == null)
-            throw new KeyNotFoundException($"User with ID {request.Id} not found");
+        var user = await _userRepository.GetByIdAsync(request.Id, cancellationToken) ?? throw new KeyNotFoundException($"User with ID {request.Id} not found");
 
-        return _mapper.Map<GetUserResult>(user);
+        return new GetUserResult()
+        {
+            Id = user.Id,
+            Name = user.Username,
+            Email = user.Email,
+            Phone = user.Phone,
+            Role = user.Role,
+            Status = user.Status
+        };
     }
 }

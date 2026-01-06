@@ -1,4 +1,4 @@
-namespace Ambev.DeveloperEvaluation.Application.Auth.AuthenticateUser;
+namespace Ambev.DeveloperEvaluation.WebApi.Features.Auth.AuthenticateUser;
 
 /// <summary>
 /// Represents the response after authenticating a user

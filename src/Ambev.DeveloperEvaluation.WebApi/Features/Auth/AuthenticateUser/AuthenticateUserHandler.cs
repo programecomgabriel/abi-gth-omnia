@@ -1,9 +1,8 @@
 using Ambev.DeveloperEvaluation.Common.Security;
-using Ambev.DeveloperEvaluation.Domain.Specifications;
 using Ambev.DeveloperEvaluation.Domain.Users;
 using MediatR;
 
-namespace Ambev.DeveloperEvaluation.Application.Auth.AuthenticateUser
+namespace Ambev.DeveloperEvaluation.WebApi.Features.Auth.AuthenticateUser
 {
     public class AuthenticateUserHandler : IRequestHandler<AuthenticateUserCommand, AuthenticateUserResult>
     {

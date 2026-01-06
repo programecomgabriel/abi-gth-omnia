@@ -1,13 +1,12 @@
 using Ambev.DeveloperEvaluation.Domain.Users;
-using Ambev.DeveloperEvaluation.WebApi.Contracts.Users;
 using MediatR;
 
-namespace Ambev.DeveloperEvaluation.Application.Users.DeleteUser;
+namespace Ambev.DeveloperEvaluation.WebApi.Features.Users.DeleteUser;
 
 /// <summary>
 /// Handler for processing DeleteUserCommand requests
 /// </summary>
-public class DeleteUserHandler : IRequestHandler<DeleteUserCommand, DeleteUserResponse>
+public class DeleteUserHandler : IRequestHandler<DeleteUserCommand>
 {
     private readonly IUserRepository _userRepository;
 
@@ -28,12 +27,10 @@ public class DeleteUserHandler : IRequestHandler<DeleteUserCommand, DeleteUserRe
     /// <param name="request">The DeleteUser command</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>The result of the delete operation</returns>
-    public async Task<DeleteUserResponse> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
+    public async Task Handle(DeleteUserCommand request, CancellationToken cancellationToken)
     {
         var success = await _userRepository.DeleteAsync(request.Id, cancellationToken);
         if (!success)
             throw new KeyNotFoundException($"User with ID {request.Id} not found");
-
-        return new DeleteUserResponse { Success = true };
     }
 }

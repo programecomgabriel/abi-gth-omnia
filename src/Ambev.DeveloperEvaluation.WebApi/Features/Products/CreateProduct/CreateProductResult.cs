@@ -25,7 +25,7 @@ public class CreateProductResult
     /// <summary>
     /// Gets the product's category name.
     /// </summary>
-    public string CategoryName { get; set; } = default!;
+    public string Category { get; set; } = default!;
 
     /// <summary>
     /// The product's price.

@@ -1,6 +1,6 @@
 using Ambev.DeveloperEvaluation.Domain.Users;
 
-namespace Ambev.DeveloperEvaluation.Application.Users.GetUser;
+namespace Ambev.DeveloperEvaluation.WebApi.Features.Users.GetUser;
 
 /// <summary>
 /// Response model for GetUser operation

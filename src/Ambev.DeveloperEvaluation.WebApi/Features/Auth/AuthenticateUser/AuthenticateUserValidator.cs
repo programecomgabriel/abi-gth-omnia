@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace Ambev.DeveloperEvaluation.Application.Auth.AuthenticateUser
+namespace Ambev.DeveloperEvaluation.WebApi.Features.Auth.AuthenticateUser
 {
     /// <summary>
     /// Validator for AuthenticateUserCommand
