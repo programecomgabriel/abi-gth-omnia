@@ -28,6 +28,8 @@ services:
       POSTGRES_PASSWORD: ev@luAt10n
     ports:
       - "5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
     restart: unless-stopped
 
   ambev.developerevaluation.nosql:
@@ -38,6 +40,8 @@ services:
         MONGO_INITDB_ROOT_PASSWORD: ev@luAt10n
     ports:
       - "27017"
+    volumes:
+      - mongo_data:/data/db
 
   ambev.developerevaluation.cache:
     container_name: ambev_developer_evaluation_cache 
@@ -48,3 +52,10 @@ services:
        MONGO_INITDB_ROOT_PASSWORD: ev@luAt10n
     ports:
        - "6379"
+    volumes:
+      - redis_data:/data
+
+volumes:
+  postgres_data:
+  mongo_data:
+  redis_data:
