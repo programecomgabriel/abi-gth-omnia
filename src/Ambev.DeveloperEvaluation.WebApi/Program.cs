@@ -43,8 +43,6 @@ public static class Program
 
             builder.RegisterDependencies();
 
-            builder.Services.AddAutoMapper(assembly);
-
             builder.Services.AddMediatR(cfg =>
             {
                 cfg.RegisterServicesFromAssemblies(assembly);

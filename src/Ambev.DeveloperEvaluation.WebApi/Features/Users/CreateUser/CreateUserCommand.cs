@@ -1,7 +1,7 @@
 ﻿using Ambev.DeveloperEvaluation.Domain.Users;
 using MediatR;
 
-namespace Ambev.DeveloperEvaluation.Application.Users.CreateUser;
+namespace Ambev.DeveloperEvaluation.WebApi.Features.Users.CreateUser;
 
 /// <summary>
 /// Command for creating a new user.

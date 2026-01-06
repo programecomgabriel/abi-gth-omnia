@@ -23,9 +23,9 @@ public class GetProductsResult
     public string Description { get; set; } = default!;
 
     /// <summary>
-    /// Gets the product's category name.
+    /// Gets the product's category.
     /// </summary>
-    public string CategoryName { get; set; } = default!;
+    public string Category { get; set; } = default!;
 
     /// <summary>
     /// The product's price.

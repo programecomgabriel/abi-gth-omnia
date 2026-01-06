@@ -1,5 +1,5 @@
-﻿using Ambev.DeveloperEvaluation.Application.Users.CreateUser;
-using Ambev.DeveloperEvaluation.Common.Validation;
+﻿using Ambev.DeveloperEvaluation.Common.Validation;
+using Ambev.DeveloperEvaluation.WebApi.Features.Users.CreateUser;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;

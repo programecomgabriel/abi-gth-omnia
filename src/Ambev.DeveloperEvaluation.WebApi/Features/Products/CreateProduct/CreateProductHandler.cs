@@ -1,5 +1,4 @@
 ﻿using Ambev.DeveloperEvaluation.Domain.Products;
-using AutoMapper;
 using MediatR;
 
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Products.CreateProduct;
@@ -7,9 +6,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Products.CreateProduct;
 /// <summary>
 /// Handler for processing <see cref="CreateProductCommand"/> requests.
 /// </summary>
-public class CreateProductHandler(
-    IProductRepository productRepository,
-    IMapper mapper) : IRequestHandler<CreateProductCommand, CreateProductResult>
+public class CreateProductHandler(IProductRepository productRepository) : IRequestHandler<CreateProductCommand, CreateProductResult>
 {
     /// <summary>
     /// Handles the CreateProductCommand request
@@ -19,10 +16,28 @@ public class CreateProductHandler(
     /// <returns>The created product details</returns>
     public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
     {
-        var product = mapper.Map<Product>(command);
+        var product = new Product
+        {
+            Title = command.Title,
+            Price = command.Price,
+            Description = command.Description,
+            Category = command.Category,
+            Image = command.Image,
+            Quantity = command.Quantity,
+            Rating = command.Rating
+        };
 
         await productRepository.CreateAsync(product, cancellationToken);
 
-        return mapper.Map<CreateProductResult>(product);
+        return new CreateProductResult
+        {
+            Id = product.Id,
+            Title = product.Title,
+            Description = product.Description,
+            Category = product.Category,
+            Price = product.Price,
+            Image = product.Image,
+            Rating = product.Rating
+        };
     }
 }

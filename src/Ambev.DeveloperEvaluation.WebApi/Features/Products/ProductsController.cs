@@ -1,9 +1,7 @@
 ﻿using Ambev.DeveloperEvaluation.Domain.Queries;
 using Ambev.DeveloperEvaluation.WebApi.Common;
-using Ambev.DeveloperEvaluation.WebApi.Contracts.Products;
 using Ambev.DeveloperEvaluation.WebApi.Features.Products.CreateProduct;
 using Ambev.DeveloperEvaluation.WebApi.Features.Products.GetProducts;
-using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,7 +12,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Products;
 /// </summary>
 [ApiController]
 [Route("api/[controller]")]
-public class ProductsController(IMediator mediator, IMapper mapper) : BaseController
+public class ProductsController(IMediator mediator) : BaseController
 {
     /// <summary>
     /// Retrieves products by querying parameters
@@ -33,7 +31,7 @@ public class ProductsController(IMediator mediator, IMapper mapper) : BaseContro
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>The all products found by query</returns>
     [HttpGet]
-    [ProducesResponseType(typeof(ApiResponseWithData<QueryPagedResult<GetProductsResponse>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponseWithData<QueryPagedResult<GetProductsResult>>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetProducts([FromQuery] Dictionary<string, string> query, CancellationToken cancellationToken)
@@ -41,7 +39,7 @@ public class ProductsController(IMediator mediator, IMapper mapper) : BaseContro
         var command = new GetProductsCommand(query);
         var response = await mediator.Send(command, cancellationToken);
 
-        return Ok(mapper.Map<QueryPagedResult<GetProductsResponse>>(response));
+        return Ok(response);
     }
 
     /// <summary>
@@ -51,18 +49,17 @@ public class ProductsController(IMediator mediator, IMapper mapper) : BaseContro
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>The created product details</returns>
     [HttpPost]
-    [ProducesResponseType(typeof(ApiResponseWithData<CreateProductResponse>), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ApiResponseWithData<CreateProductResult>), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> CreateProduct([FromBody] CreateProductRequest request, CancellationToken cancellationToken)
+    public async Task<IActionResult> CreateProduct([FromBody] CreateProductCommand command, CancellationToken cancellationToken)
     {
-        var command = mapper.Map<CreateProductCommand>(request);
         var response = await mediator.Send(command, cancellationToken);
 
-        return Created(string.Empty, new ApiResponseWithData<CreateProductResponse>
+        return Created(string.Empty, new ApiResponseWithData<CreateProductResult>
         {
             Success = true,
             Message = "Product created successfully",
-            Data = mapper.Map<CreateProductResponse>(response)
+            Data = response
         });
     }
 }

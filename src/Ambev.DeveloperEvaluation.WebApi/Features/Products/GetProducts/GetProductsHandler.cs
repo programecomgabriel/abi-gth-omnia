@@ -1,6 +1,5 @@
 ﻿using Ambev.DeveloperEvaluation.Domain.Products;
 using Ambev.DeveloperEvaluation.Domain.Queries;
-using AutoMapper;
 using MediatR;
 
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Products.GetProducts;
@@ -8,9 +7,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Products.GetProducts;
 /// <summary>
 /// Handler for processing <see cref="GetProductsCommand"/> requests.
 /// </summary>
-public class GetProductsHandler(
-    IProductRepository productRepository,
-    IMapper mapper) : IRequestHandler<GetProductsCommand, QueryPagedResult<GetProductsResult>>
+public class GetProductsHandler(IProductRepository productRepository) : IRequestHandler<GetProductsCommand, QueryPagedResult<GetProductsResult>>
 {
     /// <summary>
     /// Handles the GetProductsCommand request
@@ -22,6 +19,21 @@ public class GetProductsHandler(
     {
         var products = await productRepository.GetAllAsync(request.QueryParameters, cancellationToken);
 
-        return mapper.Map<QueryPagedResult<GetProductsResult>>(products);
+        return new QueryPagedResult<GetProductsResult>
+        {
+            Items = [.. products.Items.Select(product => new GetProductsResult
+            {
+                Id = product.Id,
+                Title = product.Title,
+                Description = product.Description,
+                Category = product.Category,
+                Price = product.Price,
+                Image = product.Image,
+                Rating = product.Rating
+            })],
+            TotalItems = products.TotalItems,
+            Page = products.Page,
+            Size = products.Size
+        };
     }
 }
