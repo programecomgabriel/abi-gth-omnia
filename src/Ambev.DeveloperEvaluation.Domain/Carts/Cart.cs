@@ -81,12 +81,13 @@ public class Cart : BaseEntity
     /// <param name="branch">Branch where the sale was made.</param>
     /// <param name="user">Owner of the cart.</param>
     /// <param name="items">Items of the cart.</param>
-    public Cart(string branch, User user, params CartItem[] items)
+    public Cart(string branch, Guid userId, params CartItem[] items)
     {
+        ArgumentNullException.ThrowIfNull(branch);
         ArgumentNullException.ThrowIfNull(items);
 
         Branch = branch;
-        User = user;
+        UserId = userId;
         Items = items;
     }
 

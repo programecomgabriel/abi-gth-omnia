@@ -45,7 +45,7 @@ public class ProductsController(IMediator mediator) : BaseController
     /// <summary>
     /// Creates a new product
     /// </summary>
-    /// <param name="request">The product creation request</param>
+    /// <param name="command">The product creation command</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>The created product details</returns>
     [HttpPost]

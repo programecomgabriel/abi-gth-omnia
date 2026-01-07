@@ -97,10 +97,8 @@ public class CartItem : BaseEntity
     /// <param name="quantity">Quantity of products</param>
     /// <param name="product">Product of the CartItem</param>
     /// <exception cref="DomainException"></exception>
-    public CartItem(int quantity, Product product)
+    public CartItem(Guid productId, decimal price, int quantity)
     {
-        ArgumentNullException.ThrowIfNull(product);
-
         if (quantity <= 0)
         {
             throw new DomainException("Quantity must be positive non zero value.");
@@ -111,11 +109,9 @@ public class CartItem : BaseEntity
             throw new DomainException("Maximum limit of 20 items per product.");
         }
 
+        ProductId = productId;
+        UnitPrice = price;
         Quantity = quantity;
-
-        UnitPrice = product.Price;
-        ProductId = product.Id;
-        Product = product;
 
         RefreshAmounts();
     }

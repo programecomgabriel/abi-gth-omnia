@@ -29,7 +29,7 @@ public class UsersController : BaseController
     /// <summary>
     /// Creates a new user
     /// </summary>
-    /// <param name="request">The user creation request</param>
+    /// <param name="command">The user creation command</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>The created user details</returns>
     [HttpPost]

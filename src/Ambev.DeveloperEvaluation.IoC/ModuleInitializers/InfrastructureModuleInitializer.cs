@@ -1,4 +1,5 @@
-﻿using Ambev.DeveloperEvaluation.Domain.Products;
+﻿using Ambev.DeveloperEvaluation.Domain.Carts;
+using Ambev.DeveloperEvaluation.Domain.Products;
 using Ambev.DeveloperEvaluation.Domain.Users;
 using Ambev.DeveloperEvaluation.ORM;
 using Ambev.DeveloperEvaluation.ORM.Repositories;
@@ -14,6 +15,7 @@ public class InfrastructureModuleInitializer : IModuleInitializer
     {
         builder.Services.AddScoped<DbContext>(provider => provider.GetRequiredService<DefaultContext>());
 
+        builder.Services.AddScoped<ICartRepository, CartRepository>();
         builder.Services.AddScoped<IProductRepository, ProductRepository>();
         builder.Services.AddScoped<IUserRepository, UserRepository>();
     }
