@@ -4,8 +4,10 @@ using Ambev.DeveloperEvaluation.Common.Security;
 using Ambev.DeveloperEvaluation.Common.Validation;
 using Ambev.DeveloperEvaluation.IoC;
 using Ambev.DeveloperEvaluation.ORM;
+using Ambev.DeveloperEvaluation.WebApi.Common;
 using Ambev.DeveloperEvaluation.WebApi.Middleware;
 using Ambev.DeveloperEvaluation.WebApi.Migrator;
+using Ambev.DeveloperEvaluation.WebApi.Swagger;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -30,7 +32,7 @@ public static class Program
             builder.Services.AddEndpointsApiExplorer();
 
             builder.AddBasicHealthChecks();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(s => s.AddSecurity());
 
             builder.Services.AddDbContext<DefaultContext>(options =>
                 options.UseNpgsql(
@@ -52,6 +54,11 @@ public static class Program
 
             builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
+            builder.Services.AddHttpContextAccessor();
+
+            builder.Services.AddScoped<Session>();
+
+            // It's added to ensure that migrations are applied in development stage
             builder.Services.AddHostedService<MigrationHostedService>();
 
             var app = builder.Build();
