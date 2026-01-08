@@ -15,7 +15,7 @@ using Serilog;
 
 namespace Ambev.DeveloperEvaluation.WebApi;
 
-public static class Program
+public class Program
 {
     public static void Main(string[] args)
     {
