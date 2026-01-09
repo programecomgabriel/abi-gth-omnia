@@ -21,7 +21,7 @@ public class CreateCartHandler(
     /// <param name="command">The CreateCart command</param>
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>The created cart details</returns>
-    public async Task<CreateCartResult> Handle(CreateCartCommand request, CancellationToken cancellationToken)
+    public async Task<CreateCartResult> Handle(CreateCartCommand command, CancellationToken cancellationToken)
     {
         var sessionUser = session.GetUser();
 
@@ -32,11 +32,11 @@ public class CreateCartHandler(
 
         var user = await userRepository.GetByIdAsync(userId, cancellationToken) ?? throw new InvalidOperationException("User not found.");
 
-        var product = await productRepository.GetByIdAsync(request.ProductId!.Value, cancellationToken) ?? throw new InvalidOperationException("Product not found.");
+        var product = await productRepository.GetByIdAsync(command.ProductId!.Value, cancellationToken) ?? throw new InvalidOperationException("Product not found.");
 
-        var cartItem = new CartItem(product.Id, product.Price, request.Quantity!.Value);
+        var cartItem = new CartItem(product.Id, product.Price, command.Quantity!.Value);
 
-        var cart = new Cart(request.Branch, user.Id, cartItem);
+        var cart = new Cart(command.Branch, user.Id, cartItem);
 
         await cartRepository.CreateAsync(cart, cancellationToken);
 

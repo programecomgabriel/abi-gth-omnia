@@ -61,7 +61,7 @@ public class CartItem : BaseEntity
     /// <summary>
     /// Gets Cart itself.
     /// </summary>
-    public virtual Cart Cart { get; set; } = new();
+    public virtual Cart Cart { get; set; } = default!;
 
     /// <summary>
     /// Gets identifier of Product.
@@ -71,7 +71,7 @@ public class CartItem : BaseEntity
     /// <summary>
     /// Gets Product itself.
     /// </summary>
-    public virtual Product Product { get; set; } = new();
+    public virtual Product Product { get; set; } = default!;
 
     /// <summary>
     /// Gets the total amount.

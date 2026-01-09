@@ -31,7 +31,7 @@ public class CreateProductTests : IClassFixture<IntegrationTestWebApiFactory>, I
     public async Task Product_CreateProductCommand_Should_Create_Product()
     {
         // Arrange
-        var command = CreateProductCommandTestData.GenerateValidProductCommand();
+        var command = CreateProductCommandTestData.GenerateValidCreateProductCommand();
 
         // Act
         var result = await _sender.Send(command);
@@ -59,9 +59,9 @@ public class CreateProductTests : IClassFixture<IntegrationTestWebApiFactory>, I
         // Arrange
         var commands = new List<CreateProductCommand>
         {
-            CreateProductCommandTestData.GenerateValidProductCommand(),
-            CreateProductCommandTestData.GenerateValidProductCommand(),
-            CreateProductCommandTestData.GenerateValidProductCommand()
+            CreateProductCommandTestData.GenerateValidCreateProductCommand(),
+            CreateProductCommandTestData.GenerateValidCreateProductCommand(),
+            CreateProductCommandTestData.GenerateValidCreateProductCommand()
         };
 
         // Act

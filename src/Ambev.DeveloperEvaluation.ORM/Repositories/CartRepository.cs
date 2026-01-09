@@ -21,4 +21,11 @@ public class CartRepository(DefaultContext context) : ICartRepository
         await context.SaveChangesAsync(cancellationToken); // TODO: colocar na unit of work
         return cart;
     }
+
+    public async Task<Cart> UpdateAsync(Cart cart, CancellationToken cancellationToken)
+    {
+        context.Carts.Update(cart);
+        await context.SaveChangesAsync(cancellationToken); // TODO: colocar na unit of work
+        return cart;
+    }
 }
