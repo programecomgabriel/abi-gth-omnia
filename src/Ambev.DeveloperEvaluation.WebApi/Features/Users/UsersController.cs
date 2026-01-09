@@ -1,7 +1,7 @@
-﻿using Ambev.DeveloperEvaluation.WebApi.Common;
-using Ambev.DeveloperEvaluation.WebApi.Features.Users.CreateUser;
-using Ambev.DeveloperEvaluation.WebApi.Features.Users.DeleteUser;
-using Ambev.DeveloperEvaluation.WebApi.Features.Users.GetUser;
+﻿using Ambev.DeveloperEvaluation.Application.Features.Users.CreateUser;
+using Ambev.DeveloperEvaluation.Application.Features.Users.DeleteUser;
+using Ambev.DeveloperEvaluation.Application.Features.Users.GetUser;
+using Ambev.DeveloperEvaluation.WebApi.Common;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

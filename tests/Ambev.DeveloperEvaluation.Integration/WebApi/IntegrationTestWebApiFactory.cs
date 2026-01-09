@@ -18,6 +18,8 @@ public class IntegrationTestWebApiFactory : WebApplicationFactory<Program>, IAsy
 {
     private readonly PostgreSqlContainer _postgres = new PostgreSqlBuilder("postgres:13").Build();
 
+    public const string UserId = "e99a6267-2c7a-483f-b84a-aca9d0e8e74f";
+
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.ConfigureTestServices(services =>
@@ -49,19 +51,19 @@ public class IntegrationTestWebApiFactory : WebApplicationFactory<Program>, IAsy
 
 public class TestUserBehavior<TRequest, TResponse>(IHttpContextAccessor accessor, IUserRepository userRepository) : IPipelineBehavior<TRequest, TResponse> where TRequest : notnull
 {
-    private const string UserId = "e99a6267-2c7a-483f-b84a-aca9d0e8e74f";
-
     public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
         accessor.HttpContext ??= new DefaultHttpContext();
 
-        var user = await userRepository.GetByIdAsync(Guid.Parse(UserId), cancellationToken);
+        var userId = Guid.Parse(IntegrationTestWebApiFactory.UserId);
+
+        var user = await userRepository.GetByIdAsync(userId, cancellationToken);
 
         if (user == null)
         {
             user = new User()
             {
-                Id = Guid.Parse(UserId),
+                Id = userId,
                 Username = "testuser",
                 Email = "testuser@testuser.com",
                 Role = UserRole.Admin

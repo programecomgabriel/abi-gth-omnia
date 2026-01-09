@@ -1,8 +1,8 @@
+using Ambev.DeveloperEvaluation.Application.Features.Users.CreateUser;
 using Ambev.DeveloperEvaluation.Common.Security;
 using Ambev.DeveloperEvaluation.Domain.Users;
 using Ambev.DeveloperEvaluation.Unit.Domain;
 using Ambev.DeveloperEvaluation.Unit.WebApi.TestFixture;
-using Ambev.DeveloperEvaluation.WebApi.Features.Users.CreateUser;
 using FluentAssertions;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;

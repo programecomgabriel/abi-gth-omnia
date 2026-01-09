@@ -1,4 +1,4 @@
-﻿using Ambev.DeveloperEvaluation.WebApi.Features.Carts.CreateCart;
+﻿using Ambev.DeveloperEvaluation.Application.Features.Carts.CreateCart;
 using Bogus;
 
 namespace Ambev.DeveloperEvaluation.Integration.WebApi.Features.Carts.TestData;

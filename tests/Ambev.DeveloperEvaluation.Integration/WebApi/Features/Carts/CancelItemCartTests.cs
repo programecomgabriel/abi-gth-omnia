@@ -1,8 +1,8 @@
-﻿using Ambev.DeveloperEvaluation.Domain.Carts;
+﻿using Ambev.DeveloperEvaluation.Application.Features.Carts.CancelItemCart;
+using Ambev.DeveloperEvaluation.Domain.Carts;
 using Ambev.DeveloperEvaluation.Integration.WebApi.Features.Carts.TestData;
 using Ambev.DeveloperEvaluation.Integration.WebApi.Features.Products.TestData;
 using Ambev.DeveloperEvaluation.ORM;
-using Ambev.DeveloperEvaluation.WebApi.Features.Carts.CancelItemCart;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
@@ -41,13 +41,15 @@ public class CancelItemCartTests : IClassFixture<IntegrationTestWebApiFactory>, 
         var createCartCommand = CreateCartCommandTestData.GenerateValidCreateCartCommand();
         createCartCommand.ProductId = createProductResult.Id;
         createCartCommand.Quantity = 1;
+        createCartCommand.UserId = Guid.Parse(IntegrationTestWebApiFactory.UserId);
         var createCartResult = await _sender.Send(createCartCommand);
 
         // Arrange
         var command = new CancelItemCartCommand()
         {
             Id = createCartResult.Id,
-            ProductId = createProductResult.Id
+            ProductId = createProductResult.Id,
+            UserId = Guid.Parse(IntegrationTestWebApiFactory.UserId)
         };
 
         // clear change tracker to avoid side effects from previous operations

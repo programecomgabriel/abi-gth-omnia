@@ -1,4 +1,7 @@
-﻿using Ambev.DeveloperEvaluation.WebApi.Common;
+﻿using Ambev.DeveloperEvaluation.Application.Features.Carts.CancelItemCart;
+using Ambev.DeveloperEvaluation.Application.Features.Carts.ChangeQuantityItemCart;
+using Ambev.DeveloperEvaluation.Application.Features.Carts.CreateCart;
+using Ambev.DeveloperEvaluation.WebApi.Common;
 using Ambev.DeveloperEvaluation.WebApi.Features.Carts.CancelItemCart;
 using Ambev.DeveloperEvaluation.WebApi.Features.Carts.ChangeQuantityItemCart;
 using Ambev.DeveloperEvaluation.WebApi.Features.Carts.CreateCart;
@@ -23,8 +26,23 @@ public class CartsController(IMediator mediator) : BaseController
     [HttpPost]
     [ProducesResponseType(typeof(ApiResponseWithData<CreateCartResult>), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> CreateCart([FromBody] CreateCartCommand command, CancellationToken cancellationToken)
+    public async Task<IActionResult> CreateCart([FromServices] Session session, [FromBody] CreateCartRequest request, CancellationToken cancellationToken)
     {
+        var sessionUser = session.GetUser();
+
+        if (!Guid.TryParse(sessionUser.Id, out var userId))
+        {
+            throw new InvalidOperationException("Invalid user ID in session.");
+        }
+
+        var command = new CreateCartCommand
+        {
+            ProductId = request.ProductId,
+            Quantity = request.Quantity,
+            Branch = request.Branch,
+            UserId = userId
+        };
+
         var response = await mediator.Send(command, cancellationToken);
 
         return Created(string.Empty, new ApiResponseWithData<CreateCartResult>
@@ -44,8 +62,23 @@ public class CartsController(IMediator mediator) : BaseController
     [HttpPost]
     [ProducesResponseType(typeof(ApiResponseWithData<ChangeQuantityItemCartResult>), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> ChangeQuantityItemCart([FromBody] ChangeQuantityItemCartCommand command, CancellationToken cancellationToken)
+    public async Task<IActionResult> ChangeQuantityItemCart([FromServices] Session session, [FromBody] ChangeQuantityItemCartRequest request, CancellationToken cancellationToken)
     {
+        var sessionUser = session.GetUser();
+
+        if (!Guid.TryParse(sessionUser.Id, out var userId))
+        {
+            throw new InvalidOperationException("Invalid user ID in session.");
+        }
+
+        var command = new ChangeQuantityItemCartCommand
+        {
+            Id = request.Id,
+            ProductId = request.ProductId,
+            Quantity = request.Quantity,
+            UserId = userId
+        };
+
         var response = await mediator.Send(command, cancellationToken);
 
         return Created(string.Empty, new ApiResponseWithData<ChangeQuantityItemCartResult>
@@ -65,8 +98,20 @@ public class CartsController(IMediator mediator) : BaseController
     [HttpPost]
     [ProducesResponseType(typeof(ApiResponseWithData<CancelItemCartResult>), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> CancelItemCart([FromBody] CancelItemCartCommand command, CancellationToken cancellationToken)
+    public async Task<IActionResult> CancelItemCart([FromServices] Session session, [FromBody] CancelItemCartRequest request, CancellationToken cancellationToken)
     {
+        var sessionUser = session.GetUser();
+
+        if (!Guid.TryParse(sessionUser.Id, out var userId))
+        {
+            throw new InvalidOperationException("Invalid user ID in session.");
+        }
+        var command = new CancelItemCartCommand
+        {
+            Id = request.Id,
+            ProductId = request.ProductId,
+            UserId = userId
+        };
         var response = await mediator.Send(command, cancellationToken);
 
         return Created(string.Empty, new ApiResponseWithData<CancelItemCartResult>

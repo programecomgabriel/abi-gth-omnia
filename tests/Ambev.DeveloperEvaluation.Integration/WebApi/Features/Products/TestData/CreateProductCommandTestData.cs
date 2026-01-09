@@ -1,5 +1,5 @@
-﻿using Ambev.DeveloperEvaluation.Domain.Products;
-using Ambev.DeveloperEvaluation.WebApi.Features.Products.CreateProduct;
+﻿using Ambev.DeveloperEvaluation.Application.Features.Products.CreateProduct;
+using Ambev.DeveloperEvaluation.Domain.Products;
 using Bogus;
 
 namespace Ambev.DeveloperEvaluation.Integration.WebApi.Features.Products.TestData;
