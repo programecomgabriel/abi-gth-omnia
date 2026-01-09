@@ -17,4 +17,12 @@ public interface ICartRepository
     /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>The cart itself</returns>
     Task<Cart> CreateAsync(Cart cart, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Updates an existing cart.
+    /// </summary>
+    /// <param name="cart">The cart to update</param>
+    /// <param name="cancellationToken">A cancellation token</param>
+    /// <returns>The cart itself.</returns>
+    Task<Cart> UpdateAsync(Cart cart, CancellationToken cancellationToken);
 }

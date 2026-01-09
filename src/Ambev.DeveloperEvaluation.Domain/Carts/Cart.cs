@@ -61,7 +61,7 @@ public class Cart : BaseEntity
     /// <summary>
     /// Gets a owner of the cart.
     /// </summary>
-    public virtual User User { get; set; } = new();
+    public virtual User User { get; set; } = default!;
 
     /// <summary>
     /// Gets items of the cart.
@@ -90,6 +90,13 @@ public class Cart : BaseEntity
         UserId = userId;
         Items = items;
     }
+
+    /// <summary>
+    /// Retrieves the cart item associated with the specified product identifier.
+    /// </summary>
+    /// <param name="productId">The unique identifier of the product to locate in the cart.</param>
+    /// <returns>The cart item that matches the specified product identifier.</returns>
+    public CartItem GetItem(Guid productId) => Items.FirstOrDefault(i => i.ProductId == productId && !i.Cancelled) ?? throw new DomainException("Item not found in cart.");
 
     /// <summary>
     /// Adding new item and quantity to the cart.

@@ -33,7 +33,7 @@ public static class CreateProductCommandTestData
     /// that meet the system's validation requirements.
     /// </summary>
     /// <returns>A valid CreateProductCommand entity with randomly generated data.</returns>
-    public static CreateProductCommand GenerateValidProductCommand()
+    public static CreateProductCommand GenerateValidCreateProductCommand()
     {
         return CreateProductCommandFaker.Generate();
     }
