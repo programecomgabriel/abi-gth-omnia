@@ -1,7 +1,7 @@
-﻿using Ambev.DeveloperEvaluation.Domain.Queries;
+﻿using Ambev.DeveloperEvaluation.Application.Features.Products.CreateProduct;
+using Ambev.DeveloperEvaluation.Application.Features.Products.GetProducts;
+using Ambev.DeveloperEvaluation.Domain.Queries;
 using Ambev.DeveloperEvaluation.WebApi.Common;
-using Ambev.DeveloperEvaluation.WebApi.Features.Products.CreateProduct;
-using Ambev.DeveloperEvaluation.WebApi.Features.Products.GetProducts;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

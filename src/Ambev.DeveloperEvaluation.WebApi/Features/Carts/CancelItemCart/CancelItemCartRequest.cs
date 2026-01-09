@@ -1,0 +1,17 @@
+﻿namespace Ambev.DeveloperEvaluation.WebApi.Features.Carts.CancelItemCart;
+
+/// <summary>
+/// Request for cancel an product of the Cart.
+/// </summary>
+public class CancelItemCartRequest
+{
+    /// <summary>
+    /// The unique identifier of the Cart.
+    /// </summary>
+    public Guid? Id { get; set; }
+
+    /// <summary>
+    /// Identifier of Product.
+    /// </summary>
+    public Guid? ProductId { get; set; }
+}

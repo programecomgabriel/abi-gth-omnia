@@ -1,3 +1,4 @@
+using Ambev.DeveloperEvaluation.Application;
 using Ambev.DeveloperEvaluation.Common.HealthChecks;
 using Ambev.DeveloperEvaluation.Common.Logging;
 using Ambev.DeveloperEvaluation.Common.Security;
@@ -19,7 +20,7 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        var assembly = typeof(Program).Assembly;
+        var mediatorAssembly = typeof(IApplication).Assembly;
 
         try
         {
@@ -47,10 +48,10 @@ public class Program
 
             builder.Services.AddMediatR(cfg =>
             {
-                cfg.RegisterServicesFromAssemblies(assembly);
+                cfg.RegisterServicesFromAssemblies(mediatorAssembly);
             });
 
-            builder.Services.AddValidatorsFromAssembly(assembly);
+            builder.Services.AddValidatorsFromAssembly(mediatorAssembly);
 
             builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 

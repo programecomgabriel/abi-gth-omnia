@@ -1,8 +1,8 @@
-﻿using Ambev.DeveloperEvaluation.Domain.Carts;
+﻿using Ambev.DeveloperEvaluation.Application.Features.Carts.ChangeQuantityItemCart;
+using Ambev.DeveloperEvaluation.Domain.Carts;
 using Ambev.DeveloperEvaluation.Integration.WebApi.Features.Carts.TestData;
 using Ambev.DeveloperEvaluation.Integration.WebApi.Features.Products.TestData;
 using Ambev.DeveloperEvaluation.ORM;
-using Ambev.DeveloperEvaluation.WebApi.Features.Carts.ChangeQuantityItemCart;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
@@ -41,6 +41,7 @@ public class ChangeQuantityItemCartTests : IClassFixture<IntegrationTestWebApiFa
         var createCartCommand = CreateCartCommandTestData.GenerateValidCreateCartCommand();
         createCartCommand.ProductId = createProductResult.Id;
         createCartCommand.Quantity = 3;
+        createCartCommand.UserId = Guid.Parse(IntegrationTestWebApiFactory.UserId);
         var createCartResult = await _sender.Send(createCartCommand);
 
         // Arrange
@@ -48,7 +49,8 @@ public class ChangeQuantityItemCartTests : IClassFixture<IntegrationTestWebApiFa
         {
             Id = createCartResult.Id,
             ProductId = createProductResult.Id,
-            Quantity = 10
+            Quantity = 10,
+            UserId = Guid.Parse(IntegrationTestWebApiFactory.UserId)
         };
 
         // clear change tracker to avoid side effects from previous operations

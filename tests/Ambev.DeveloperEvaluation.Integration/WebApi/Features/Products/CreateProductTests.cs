@@ -1,7 +1,7 @@
-﻿using Ambev.DeveloperEvaluation.Domain.Products;
+﻿using Ambev.DeveloperEvaluation.Application.Features.Products.CreateProduct;
+using Ambev.DeveloperEvaluation.Application.Features.Products.GetProducts;
+using Ambev.DeveloperEvaluation.Domain.Products;
 using Ambev.DeveloperEvaluation.Integration.WebApi.Features.Products.TestData;
-using Ambev.DeveloperEvaluation.WebApi.Features.Products.CreateProduct;
-using Ambev.DeveloperEvaluation.WebApi.Features.Products.GetProducts;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;

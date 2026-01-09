@@ -1,5 +1,5 @@
+using Ambev.DeveloperEvaluation.Application.Features.Users.CreateUser;
 using Ambev.DeveloperEvaluation.Domain.Users;
-using Ambev.DeveloperEvaluation.WebApi.Features.Users.CreateUser;
 using Bogus;
 
 namespace Ambev.DeveloperEvaluation.Unit.Domain;
